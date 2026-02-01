@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Enhanced Custom CSS for ALL sections
+# COMPLETE Enhanced Custom CSS (ALL animations fixed)
 st.markdown("""
 <style>
 /* Global Styles */
@@ -32,15 +32,45 @@ st.markdown("""
 .gradient-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; }
 
 /* Buttons */
-.cta-btn { 
+.cta-btn, .cta-button { 
     background: linear-gradient(45deg, #ff6b6b, #ff8e8e); border: none; padding: 16px 40px; 
     border-radius: 50px; font-size: 1.2rem; font-weight: 700; color: white; 
     box-shadow: 0 10px 30px rgba(255,107,107,0.4); transition: all 0.3s ease;
+    text-decoration: none; display: inline-block;
 }
-.cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,107,0.6); }
+.cta-btn:hover, .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,107,0.6); }
 
 /* Stats */
 .stat-card { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
+
+/* HERO ANIMATIONS - FIXED */
+.hero-bg {
+    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.floating-icons { position: absolute; width: 100%; height: 100%; overflow: hidden; }
+.icon { position: absolute; font-size: 2rem; animation: float 6s ease-in-out infinite; }
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+.hero-title { font-size: 4.5rem; font-weight: 800; margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.hero-subtitle { font-size: 1.6rem; margin-bottom: 2.5rem; opacity: 0.95; }
+.hero-content { max-width: 1200px; padding: 2rem; z-index: 2; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -63,87 +93,8 @@ def main():
     elif page == "💬 Share Interest":
         contact_section()
 
-# 🔥 UPGRADED HERO SECTION
+# 🔥 PERFECT HERO SECTION (All animations working)
 def hero_section():
-    # Full-width animated hero background
-    st.markdown("""
-    <style>
-    .hero-bg {
-        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
-        height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
-        position: relative;
-        overflow: hidden;
-        border-radius: 0;
-    }
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    .hero-content {
-        max-width: 1200px;
-        padding: 2rem;
-        z-index: 2;
-    }
-    .hero-title {
-        font-size: 4.5rem;
-        font-weight: 800;
-        margin-bottom: 1.5rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        animation: fadeInUp 1s ease;
-    }
-    .hero-subtitle {
-        font-size: 1.6rem;
-        margin-bottom: 2.5rem;
-        opacity: 0.95;
-        animation: fadeInUp 1s ease 0.2s both;
-    }
-    .cta-button {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-        border: none;
-        padding: 18px 40px;
-        border-radius: 50px;
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: white;
-        box-shadow: 0 10px 30px rgba(255,107,107,0.4);
-        transition: all 0.3s ease;
-        animation: fadeInUp 1s ease 0.4s both;
-    }
-    .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(255,107,107,0.6);
-    }
-    .floating-icons {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    .icon {
-        position: absolute;
-        font-size: 2rem;
-        animation: float 6s ease-in-out infinite;
-    }
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # Hero section
     st.markdown("""
     <div class="hero-bg">
         <div class="floating-icons">
@@ -155,9 +106,8 @@ def hero_section():
         <div class="hero-content">
             <h1 class="hero-title">🏠 Transform Your Home</h1>
             <p class="hero-subtitle">Seamless Smart Home Automation • One Tap Control • Future-Proof Technology</p>
-            <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
-                🚀 Explore Smart Packages
-            </button>
+            <a href="#products" class="cta-button">🚀 Explore Smart Packages</a>
+            <a href="#contact" class="cta-button" style="background: linear-gradient(45deg, #43e97b, #38f9d7); margin-left: 1rem;">💬 Get Free Quote</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -165,35 +115,19 @@ def hero_section():
     # Stats row
     st.markdown("---")
     col1, col2, col3, col4 = st.columns(4)
+    with col1: st.metric("🏠", "10K+", "Homes Automated")
+    with col2: st.metric("⭐", "4.9/5", "Customer Rating")
+    with col3: st.metric("⚡", "99.9%", "Uptime")
+    with col4: st.metric("🏢", "India", "Wide Coverage")
     
-    with col1:
-        st.metric("🏠", "10K+", "Homes Automated")
-    with col2:
-        st.metric("⭐", "4.9/5", "Customer Rating")
-    with col3:
-        st.metric("⚡", "99.9%", "Uptime")
-    with col4:
-        st.metric("🏢", "India", "Wide Coverage")
-    
-    # Feature showcase carousel effect
+    # Feature showcase
     st.markdown('<div style="height: 2rem;"></div>', unsafe_allow_html=True)
     st.markdown('<h2 style="text-align: center; color: #1e3a8a; font-size: 2.5rem; margin-bottom: 3rem;">Why SmartNest?</h2>', unsafe_allow_html=True)
     
-    # Three main features with hover effects
     col1, col2, col3 = st.columns(3)
-    
     with col1:
         st.markdown("""
-        <div style="
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; 
-            padding: 3rem 2rem; 
-            border-radius: 20px; 
-            text-align: center;
-            height: 100%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 40px rgba(102,126,234,0.3);
-        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div class="card gradient-1" style="height: 100%;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
             <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Bank-Grade Security</h3>
             <p>End-to-end encryption • Zero data leaks • Privacy-first design</p>
@@ -202,16 +136,7 @@ def hero_section():
     
     with col2:
         st.markdown("""
-        <div style="
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white; 
-            padding: 3rem 2rem; 
-            border-radius: 20px; 
-            text-align: center;
-            height: 100%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 40px rgba(240,147,251,0.3);
-        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div class="card gradient-2" style="height: 100%;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">🔗</div>
             <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Universal Integration</h3>
             <p>Alexa • Google Home • Apple HomeKit • 500+ devices</p>
@@ -220,38 +145,25 @@ def hero_section():
     
     with col3:
         st.markdown("""
-        <div style="
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white; 
-            padding: 3rem 2rem; 
-            border-radius: 20px; 
-            text-align: center;
-            height: 100%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 40px rgba(79,172,254,0.3);
-        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div class="card gradient-3" style="height: 100%;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
             <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">24/7 Expert Support</h3>
             <p>Installation • Troubleshooting • Lifetime assistance</p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Quick action buttons
+    # Quick action
     st.markdown('<div style="height: 4rem;"></div>', unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         st.markdown("""
-        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                    color: white; border-radius: 15px;">
-            <h3 style="margin-bottom: 1rem;">Ready to Start?</h3>
-            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-                💬 Share Your Interest Now
-            </button>
+        <div style="text-align: center; padding: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px;">
+            <h3 style="margin-bottom: 1.5rem;">Ready to Start?</h3>
+            <a href="#contact" class="cta-button" style="background: linear-gradient(45deg, #43e97b, #38f9d7);">💬 Share Your Interest Now</a>
         </div>
         """, unsafe_allow_html=True)
 
-
-# 🔥 UPGRADED ABOUT SECTION  
+# 🔥 ABOUT SECTION
 def about_section():
     st.markdown('<h2 class="section-title">About SmartNest Automation</h2>', unsafe_allow_html=True)
     
@@ -277,9 +189,9 @@ def about_section():
         st.image("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&fit=crop&w=800&q=80", 
                 use_column_width=True, caption="Modern Indian Smart Homes")
     
-    # Timeline
     st.markdown("---")
     st.markdown('<h3 style="text-align:center; color:#1e3a8a; font-size:2.2rem;">Our Journey</h3>', unsafe_allow_html=True)
+    
     cols = st.columns(3)
     with cols[0]:
         st.markdown("""
@@ -306,12 +218,11 @@ def about_section():
         </div>
         """, unsafe_allow_html=True)
 
-# 🔥 UPGRADED PRODUCTS SECTION
+# 🔥 PRODUCTS SECTION
 def products_section():
     st.markdown('<h2 class="section-title" id="products">Full Home Automation Packages</h2>', unsafe_allow_html=True)
-    st.markdown('<p style="text-align:center; font-size:1.4rem; color:#6b7280; max-width:800px; margin:0 auto;">Tailored solutions for every home, apartment, and lifestyle</p>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align:center; font-size:1.4rem; color:#6b7280; max-width:800px; margin:0 auto 3rem;">Tailored solutions for every home, apartment, and lifestyle</p>', unsafe_allow_html=True)
     
-    # Product Comparison Table
     st.markdown("""
     <div style="overflow-x:auto; margin:3rem 0;">
     <table style="width:100%; border-collapse:collapse; background:white; border-radius:20px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.1);">
@@ -378,12 +289,11 @@ def products_section():
         </div>
         """, unsafe_allow_html=True)
 
-# 🔥 UPGRADED CONTACT SECTION  
+# 🔥 CONTACT SECTION
 def contact_section():
     st.markdown('<h2 class="section-title" id="contact">Share Your Interest</h2>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; font-size:1.4rem; color:#6b7280;">Get your personalized quote within 24 hours • 100% free consultation</p>', unsafe_allow_html=True)
     
-    # Form with beautiful styling
     with st.form("interest_form", clear_on_submit=True):
         col1, col2 = st.columns(2)
         with col1:
@@ -403,11 +313,10 @@ def contact_section():
             st.markdown('<div style="height:100px;"></div>', unsafe_allow_html=True)
         
         st.markdown('<div style="text-align:center; margin-top:2rem;">', unsafe_allow_html=True)
-        submitted = st.form_submit_button("🚀 Send My Interest", use_container_width=True, 
-                                        help="We'll respond within 24 hours!")
+        submitted = st.form_submit_button("🚀 Send My Interest", use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    if submitted and not st.session_state.form_submitted:
+    if 'submitted' in locals() and submitted and not st.session_state.form_submitted:
         st.session_state.form_submitted = True
         st.markdown("""
         <div style='background: linear-gradient(135deg, #10b981, #34d399); color:white; padding:3rem; 
@@ -424,13 +333,15 @@ def contact_section():
                   "Home": home_type, "Budget": budget_range, "Message": message}
         st.json(details)
 
-# Footer
+# PERFECT FOOTER
 st.markdown("""
 <hr style='border: none; height: 2px; background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent); margin: 4rem 0;'>
 
 <div style='text-align:center; padding:4rem 2rem; background:linear-gradient(135deg,#1e293b 0%,#334155 100%); color:white; border-radius:25px 25px 0 0;'>
     <h3 style='font-size:2.2rem; margin-bottom:1rem;'>🏠 SmartNest Automation</h3>
-    <p style='font-size:1.2rem; opacity:0.9;'>Pimpri-Chinchwad, Maharashtra, India | 📧 info@smartnest.in | 📱 +91 98765 43210</p>
+    <p style='font-size:1.2rem; opacity:0.9;'>Pimpri-Chinchwad, Maharashtra, India | 
+    <a href="mailto:info@smartnest.in" style="color:#60a5fa; text-decoration:none;">📧 info@smartnest.in</a> | 
+    📱 +91 98765 43210</p>
     <p style='margin-top:2rem; opacity:0.8;'>© 2026 All Rights Reserved | Making India Smarter, One Home at a Time</p>
 </div>
 """, unsafe_allow_html=True)
