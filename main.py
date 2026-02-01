@@ -65,36 +65,191 @@ def main():
 
 # 🔥 UPGRADED HERO SECTION
 def hero_section():
-    # Animated hero
+    # Full-width animated hero background
     st.markdown("""
-    <div style='
+    <style>
+    .hero-bg {
         background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-        background-size: 400% 400%; animation: gradientShift 12s ease infinite;
-        height: 75vh; display: flex; align-items: center; justify-content: center; 
-        text-align: center; color: white; position: relative; border-radius: 0;'>
-        <div style='max-width: 1200px; padding: 2rem; z-index: 2;'>
-            <h1 style='font-size: 5rem; font-weight: 900; margin-bottom: 1.5rem; text-shadow: 3px 3px 6px rgba(0,0,0,0.4);'>
-                Transform Your Home into a Smart Haven
-            </h1>
-            <p style='font-size: 1.8rem; margin-bottom: 3rem; opacity: 0.95;'>
-                Control everything with one tap • Future-proof technology • Made for India
-            </p>
-            <div style='display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;'>
-                <button class='cta-btn' onclick='document.getElementById("products").scrollIntoView({behavior:"smooth"})'>🚀 Explore Packages</button>
-                <button class='cta-btn' onclick='document.getElementById("contact").scrollIntoView({behavior:"smooth"})' style='background: linear-gradient(45deg, #43e97b, #38f9d7);'>💬 Get Quote</button>
-            </div>
-        </div>
-    </div>
-    <style>@keyframes gradientShift{0%{background-position:0%50%}50%{background-position:100%50%}100%{background-position:0%50%}}</style>
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+    }
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .hero-content {
+        max-width: 1200px;
+        padding: 2rem;
+        z-index: 2;
+    }
+    .hero-title {
+        font-size: 4.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 1s ease;
+    }
+    .hero-subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        animation: fadeInUp 1s ease 0.2s both;
+    }
+    .cta-button {
+        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        border: none;
+        padding: 18px 40px;
+        border-radius: 50px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+        box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease 0.4s both;
+    }
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+    }
+    .floating-icons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .icon {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 6s ease-in-out infinite;
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    </style>
     """, unsafe_allow_html=True)
     
-    # Stats
+    # Hero section
+    st.markdown("""
+    <div class="hero-bg">
+        <div class="floating-icons">
+            <div class="icon" style="top:20%; left:10%; animation-delay: 0s;">💡</div>
+            <div class="icon" style="top:60%; right:15%; animation-delay: 2s;">🔒</div>
+            <div class="icon" style="bottom:20%; left:20%; animation-delay: 4s;">🎵</div>
+            <div class="icon" style="top:30%; right:25%; animation-delay: 1s;">🌡️</div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">🏠 Transform Your Home</h1>
+            <p class="hero-subtitle">Seamless Smart Home Automation • One Tap Control • Future-Proof Technology</p>
+            <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                🚀 Explore Smart Packages
+            </button>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Stats row
     st.markdown("---")
-    cols = st.columns(4)
-    with cols[0]: st.markdown('<div class="stat-card"><h2 style="color:#1e3a8a;font-size:2.5rem;">10K+</h2><p>Homes Automated</p></div>', unsafe_allow_html=True)
-    with cols[1]: st.markdown('<div class="stat-card"><h2 style="color:#f59e0b;font-size:2.5rem;">4.9/5</h2><p>Rating</p></div>', unsafe_allow_html=True)
-    with cols[2]: st.markdown('<div class="stat-card"><h2 style="color:#10b981;font-size:2.5rem;">99.9%</h2><p>Uptime</p></div>', unsafe_allow_html=True)
-    with cols[3]: st.markdown('<div class="stat-card"><h2 style="color:#1e40af;font-size:2.5rem;">50+</h2><p>Cities</p></div>', unsafe_allow_html=True)
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("🏠", "10K+", "Homes Automated")
+    with col2:
+        st.metric("⭐", "4.9/5", "Customer Rating")
+    with col3:
+        st.metric("⚡", "99.9%", "Uptime")
+    with col4:
+        st.metric("🏢", "India", "Wide Coverage")
+    
+    # Feature showcase carousel effect
+    st.markdown('<div style="height: 2rem;"></div>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; color: #1e3a8a; font-size: 2.5rem; margin-bottom: 3rem;">Why SmartNest?</h2>', unsafe_allow_html=True)
+    
+    # Three main features with hover effects
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("""
+        <div style="
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(102,126,234,0.3);
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Bank-Grade Security</h3>
+            <p>End-to-end encryption • Zero data leaks • Privacy-first design</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div style="
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white; 
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(240,147,251,0.3);
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🔗</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Universal Integration</h3>
+            <p>Alexa • Google Home • Apple HomeKit • 500+ devices</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div style="
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white; 
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(79,172,254,0.3);
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">24/7 Expert Support</h3>
+            <p>Installation • Troubleshooting • Lifetime assistance</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Quick action buttons
+    st.markdown('<div style="height: 4rem;"></div>', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("""
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                    color: white; border-radius: 15px;">
+            <h3 style="margin-bottom: 1rem;">Ready to Start?</h3>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                💬 Share Your Interest Now
+            </button>
+        </div>
+        """, unsafe_allow_html=True)
+
 
 # 🔥 UPGRADED ABOUT SECTION  
 def about_section():
