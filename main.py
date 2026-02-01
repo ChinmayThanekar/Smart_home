@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-from streamlit_faker import faker  # Optional: for demo form submissions
 
 # Page config
 st.set_page_config(
@@ -62,12 +60,12 @@ def hero_section():
             <h2 style='font-size: 2.5rem; margin-bottom: 1rem;'>Seamless Smart Home Automation</h2>
             <p style='font-size: 1.3rem; margin-bottom: 2rem;'>Control lights, security, climate, and more with one tap. 
             Experience modern living with cutting-edge technology.</p>
-            <button class='btn-primary'>Explore Packages</button>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("![Smart Home](https://images.unsplash.com/photo-1558618047-3c8c76ca6e71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)")
+        st.image("https://images.unsplash.com/photo-1558618047-3c8c76ca6e71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                caption="Smart Home Automation")
     
     st.markdown("---")
     
