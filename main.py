@@ -283,21 +283,31 @@ elif st.session_state.page == "About":
         """, unsafe_allow_html=True)
 
 elif st.session_state.page == "Products":
-    st.markdown('<h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">Full Home Automation Packages</h2>')
-    st.markdown('<p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Tailored solutions for every home size and lifestyle</p>')
+    # FIXED HEIGHTS & PERFECT ALIGNMENT
+    st.markdown("""
+    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 1.5rem 0; font-weight:800;">Full Home Automation Packages</h2>
+    <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Tailored solutions for every home size and lifestyle</p>
+    """, unsafe_allow_html=True)
     
+    # EQUAL HEIGHT CONTAINERS
     col1, col2, col3 = st.columns(3)
+    
     with col1:
         st.markdown("""
-        <div class="card gradient-1 gradient-card" style="height:420px; padding:4rem;">
-            <span class="icon-large" style="font-size:5.5rem;">📦</span>
-            <h3 style="font-size:2.2rem; margin-bottom:1.5rem;">Basic Package</h3>
-            <p style="font-size:1.4rem; margin-bottom:2rem; opacity:0.95;">1-2 BHK Apartments</p>
-            <ul style="text-align:left; font-size:1.2rem; line-height:1.8; margin-bottom:2rem;">
-                <li>✅ Smart lighting control</li>
-                <li>✅ Appliance automation</li>
-                <li>✅ Basic security sensors</li>
-            </ul>
+        <div class="card gradient-1 gradient-card" style="height:480px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <span class="icon-large" style="font-size:5rem;">📦</span>
+                <h3 style="font-size:2rem; margin:1.5rem 0 1rem 0;">Basic Package</h3>
+                <p style="font-size:1.3rem; margin-bottom:2rem; opacity:0.95;">1-2 BHK Apartments</p>
+                <ul style="text-align:left; font-size:1.15rem; line-height:1.7; margin-bottom:0; flex-grow:1;">
+                    <li style="margin-bottom:0.5rem;">✅ Smart lighting</li>
+                    <li style="margin-bottom:0.5rem;">✅ Appliance control</li>
+                    <li style="margin-bottom:0.5rem;">✅ Basic security</li>
+                </ul>
+            </div>
+            <div style="margin-top:auto;">
+                <p style="font-size:1.4rem; font-weight:600; margin-bottom:1rem; color:#fff;">Starting ₹49,999</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         if st.button("💬 Get Quote", key="prod_basic", use_container_width=True):
@@ -306,15 +316,20 @@ elif st.session_state.page == "Products":
     
     with col2:
         st.markdown("""
-        <div class="card gradient-2 gradient-card" style="height:420px; padding:4rem;">
-            <span class="icon-large" style="font-size:5.5rem;">⭐</span>
-            <h3 style="font-size:2.2rem; margin-bottom:1.5rem;">Standard Package</h3>
-            <p style="font-size:1.4rem; margin-bottom:2rem; opacity:0.95;">3 BHK & Villas</p>
-            <ul style="text-align:left; font-size:1.2rem; line-height:1.8; margin-bottom:2rem;">
-                <li>✅ Climate control (AC)</li>
-                <li>✅ Curtain automation</li>
-                <li>✅ Multi-room audio</li>
-            </ul>
+        <div class="card gradient-2 gradient-card" style="height:480px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <span class="icon-large" style="font-size:5rem;">⭐</span>
+                <h3 style="font-size:2rem; margin:1.5rem 0 1rem 0;">Standard Package</h3>
+                <p style="font-size:1.3rem; margin-bottom:2rem; opacity:0.95;">3 BHK & Villas</p>
+                <ul style="text-align:left; font-size:1.15rem; line-height:1.7; margin-bottom:0; flex-grow:1;">
+                    <li style="margin-bottom:0.5rem;">✅ Climate control</li>
+                    <li style="margin-bottom:0.5rem;">✅ Curtain automation</li>
+                    <li style="margin-bottom:0.5rem;">✅ Multi-room audio</li>
+                </ul>
+            </div>
+            <div style="margin-top:auto;">
+                <p style="font-size:1.4rem; font-weight:600; margin-bottom:1rem; color:#fff;">Starting ₹99,999</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         if st.button("💬 Get Quote", key="prod_standard", use_container_width=True):
@@ -323,20 +338,29 @@ elif st.session_state.page == "Products":
     
     with col3:
         st.markdown("""
-        <div class="card gradient-3 gradient-card" style="height:420px; padding:4rem;">
-            <span class="icon-large" style="font-size:5.5rem;">👑</span>
-            <h3 style="font-size:2.2rem; margin-bottom:1.5rem;">Premium Package</h3>
-            <p style="font-size:1.4rem; margin-bottom:2rem; opacity:0.95;">4+ BHK Luxury Homes</p>
-            <ul style="text-align:left; font-size:1.2rem; line-height:1.8; margin-bottom:2rem;">
-                <li>✅ AI personalization</li>
-                <li>✅ Energy optimization</li>
-                <li>✅ Full home integration</li>
-            </ul>
+        <div class="card gradient-3 gradient-card" style="height:480px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <span class="icon-large" style="font-size:5rem;">👑</span>
+                <h3 style="font-size:2rem; margin:1.5rem 0 1rem 0;">Premium Package</h3>
+                <p style="font-size:1.3rem; margin-bottom:2rem; opacity:0.95;">4+ BHK Luxury Homes</p>
+                <ul style="text-align:left; font-size:1.15rem; line-height:1.7; margin-bottom:0; flex-grow:1;">
+                    <li style="margin-bottom:0.5rem;">✅ AI personalization</li>
+                    <li style="margin-bottom:0.5rem;">✅ Energy optimization</li>
+                    <li style="margin-bottom:0.5rem;">✅ Full integration</li>
+                </ul>
+            </div>
+            <div style="margin-top:auto;">
+                <p style="font-size:1.4rem; font-weight:600; margin-bottom:1rem; color:#fff;">Starting ₹1,99,999</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         if st.button("💬 Get Quote", key="prod_premium", use_container_width=True):
             st.session_state.page = "Contact"
             st.rerun()
+    
+    # PERFECT SPACING BELOW
+    st.markdown("<div style='height:2rem;'></div>", unsafe_allow_html=True)
+
 
 elif st.session_state.page == "Contact":
     st.markdown("""
