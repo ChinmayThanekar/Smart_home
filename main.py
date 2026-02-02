@@ -273,17 +273,22 @@ elif st.session_state.page == "Products":
             st.rerun()
 
 elif st.session_state.page == "Contact":
-    st.markdown('<h2 style="color: #1e3a8a; text-align: center; margin-bottom: 1rem;">Share Your Interest</h2>')
-    st.markdown('<p style="text-align: center; font-size: 1.3rem; color: #6b7280; margin-bottom: 3rem;">Get personalized quote within 24 hours</p>')
+    # FIXED - Proper HTML rendering
+    st.markdown("""
+    <h2 style="color: #1e3a8a; text-align: center; margin-bottom: 1rem;">Share Your Interest</h2>
+    <p style="text-align: center; font-size: 1.3rem; color: #6b7280; margin-bottom: 3rem;">Get personalized quote within 24 hours</p>
+    """, unsafe_allow_html=True)
     
     col1, col2 = st.columns([1, 1])
     with col1:
         if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
             st.session_state.page = "Home"
+            st.session_state.form_submitted = False
             st.rerun()
     with col2:
         if st.button("📦 View Packages", key="contact_products", use_container_width=True):
             st.session_state.page = "Products"
+            st.session_state.form_submitted = False
             st.rerun()
     
     if not st.session_state.form_submitted:
@@ -309,10 +314,11 @@ elif st.session_state.page == "Contact":
     
     if st.session_state.form_submitted:
         st.markdown("""
-        <div class="form-success">
-            <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
-            <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Thank You!</h2>
-            <p style="font-size: 1.3rem;">We'll contact you within <strong>24 hours</strong> with your personalized quote.</p>
+        <div style='background: linear-gradient(135deg, #10b981, #34d399); color:white; padding:3rem; 
+                    border-radius:20px; text-align:center; box-shadow:0 20px 40px rgba(16,185,129,0.3); margin:2rem 0;'>
+            <div style='font-size:4rem; margin-bottom:1rem;'>🎉</div>
+            <h2 style='font-size:2.2rem; margin-bottom:1rem;'>Thank You!</h2>
+            <p style='font-size:1.3rem;'>We'll contact you within <strong>24 hours</strong> with your personalized quote.</p>
         </div>
         """, unsafe_allow_html=True)
         st.balloons()
@@ -327,6 +333,7 @@ elif st.session_state.page == "Contact":
             "Message": message if 'message' in locals() else ""
         }
         st.json(details)
+
 
 # PERFECT FOOTER
 st.markdown("""
