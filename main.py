@@ -291,7 +291,7 @@ elif st.session_state.page == "About":
             <span class="icon-large" style="font-size:4.5rem;">📅</span>
             <div style="margin-top:auto;">
                 <h4 style="font-size:2rem; margin-bottom:0.5rem; font-weight:800;">2021</h4>
-                <p style="font-size:1.25rem; opacity:0.95;">Founded in Pune</p>
+                <p style="font-size:1.25rem; opacity:0.95;">Founded in Nagpur</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
