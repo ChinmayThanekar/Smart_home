@@ -148,7 +148,7 @@ with st.sidebar:
         st.session_state.page = selected
         st.rerun()
     st.markdown("---")
-    st.markdown("**🌟 Pimpri-Chinchwad**")
+    st.markdown("**🌟 Nagpur**")
     st.markdown("*Making India Smarter*")
 
 # MAIN CONTENT - FULLY ANIMATED
@@ -230,7 +230,7 @@ elif st.session_state.page == "About":
     # PERFECTLY ALIGNED HEADER
     st.markdown("""
     <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About SmartNest Automation</h2>
-    <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Pimpri-Chinchwad's leading smart home automation experts</p>
+    <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Nagpur's leading smart home automation experts</p>
     """, unsafe_allow_html=True)
     
     # MAIN CONTENT - PERFECTLY BALANCED
@@ -242,7 +242,7 @@ elif st.session_state.page == "About":
         <div class="card gradient-1 gradient-card" style="height:520px; padding:3.5rem 3rem; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
                 <span class="icon-large" style="font-size:5.5rem;">🏢</span>
-                <h3 style="font-size:2.1rem; margin:1.5rem 0 1rem 0; font-weight:800;">Pimpri-Chinchwad's<br>Smart Home Pioneers</h3>
+                <h3 style="font-size:2.1rem; margin:1.5rem 0 1rem 0; font-weight:800;">Nagpur's<br>Smart Home Pioneers</h3>
                 <p style="font-size:1.25rem; line-height:1.7; opacity:0.95; margin-bottom:1.5rem;">
                     5+ years transforming Indian homes from Mumbai apartments 
                     to Bangalore villas with <strong>enterprise-grade reliability</strong>.
@@ -466,7 +466,7 @@ st.markdown("""
 <div class="footer">
     <h3 style="font-size:2.5rem; margin-bottom:1.5rem; font-weight:800;">🏠 SmartNest Automation</h3>
     <p style="font-size:1.3rem; opacity:0.95; margin-bottom:1.5rem;">
-        Pimpri-Chinchwad, Maharashtra, India | 
+        Nagpur, Maharashtra, India | 
         <a href="mailto:info@smartnest.in" style="color:#60a5fa; text-decoration:none; font-weight:600;">📧 info@smartnest.in</a> | 
         📱 +91 98765 43210
     </p>
