@@ -67,15 +67,18 @@ body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
 .card:nth-child(2) { animation-delay: 0.4s; }
 .card:nth-child(3) { animation-delay: 0.6s; }
 .card:hover { 
-    transform: translateY(-15px) scale(1.03); box-shadow: 0 50px 100px rgba(0,0,0,0.25); 
-    background: rgba(255,255,255,1);
+    transform: translateY(-15px) scale(1.03); box-shadow: 0 50px 100px rgba(0,0,0,0.25) !important; 
 }
-.gradient-card { color: white !important; border: none; }
-.gradient-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.gradient-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.gradient-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-.gradient-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-.icon-large { font-size: 5rem; margin-bottom: 2rem; display: block; animation: float 4s ease-in-out infinite; }
+
+/* GRADIENT CARDS - KEEP THEIR COLORS ON HOVER */
+.gradient-card:hover { 
+    filter: brightness(1.1) saturate(1.2); 
+    box-shadow: 0 50px 100px rgba(0,0,0,0.3) !important;
+}
+.gradient-1:hover { background: linear-gradient(135deg, #5a67d8, #6b46c1) !important; }
+.gradient-2:hover { background: linear-gradient(135deg, #e879f9, #ec4899) !important; }
+.gradient-3:hover { background: linear-gradient(135deg, #3b82f6, #06b6d4) !important; }
+.gradient-4:hover { background: linear-gradient(135deg, #059669, #10b981) !important; }
 
 /* ENHANCED BUTTONS */
 .stButton > button {
