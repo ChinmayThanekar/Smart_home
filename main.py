@@ -227,25 +227,48 @@ if st.session_state.page == "Home":
             st.rerun()
 
 elif st.session_state.page == "About":
-    st.markdown('<h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0; font-weight:800;">About SmartNest Automation</h2>')
+    # PERFECTLY ALIGNED HEADER
+    st.markdown("""
+    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About SmartNest Automation</h2>
+    <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Pimpri-Chinchwad's leading smart home automation experts</p>
+    """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns([1.2, 1])
+    # MAIN CONTENT - PERFECTLY BALANCED
+    col1, col2 = st.columns([1.1, 1])
+    
     with col1:
+        # FIXED HEIGHT & PERFECT SPACING
         st.markdown("""
-        <div class="card gradient-1 gradient-card" style="height:480px; padding:4rem;">
-            <span class="icon-large" style="font-size:6rem;">🏢</span>
-            <h3 style="font-size:2.2rem; margin-bottom:2rem;">Pimpri-Chinchwad's<br>Smart Home Pioneers</h3>
-            <p style="font-size:1.3rem; line-height:1.8; opacity:0.95;">
-                5+ years transforming Indian homes. From Mumbai apartments 
-                to Bangalore villas, we deliver <strong>enterprise-grade reliability</strong>.
-            </p>
+        <div class="card gradient-1 gradient-card" style="height:520px; padding:3.5rem 3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <span class="icon-large" style="font-size:5.5rem;">🏢</span>
+                <h3 style="font-size:2.1rem; margin:1.5rem 0 1rem 0; font-weight:800;">Pimpri-Chinchwad's<br>Smart Home Pioneers</h3>
+                <p style="font-size:1.25rem; line-height:1.7; opacity:0.95; margin-bottom:1.5rem;">
+                    5+ years transforming Indian homes from Mumbai apartments 
+                    to Bangalore villas with <strong>enterprise-grade reliability</strong>.
+                </p>
+                <ul style="text-align:left; font-size:1.15rem; line-height:1.6;">
+                    <li>✅ 10K+ homes automated</li>
+                    <li>✅ 50+ cities covered</li>
+                    <li>✅ 99.9% uptime guaranteed</li>
+                </ul>
+            </div>
+            <div style="margin-top:auto;">
+                <p style="font-size:1.4rem; font-weight:700; margin-bottom:1rem;">Since 2021</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.image("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85", use_column_width=True)
+        # IMAGE CONTAINER - SAME HEIGHT
+        st.markdown("""
+        <div style="height:520px; border-radius:30px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.15); background:linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248,250,252,0.8)); display:flex; align-items:center; justify-content:center;">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=520&q=85" style="width:100%; height:100%; object-fit:cover; border-radius:30px;">
+        </div>
+        """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
+    # PERFECTLY ALIGNED ACTION BUTTONS
+    col1, col2 = st.columns([1, 1])
     with col1:
         if st.button("📦 Explore Packages", key="about_pkg", use_container_width=True):
             st.session_state.page = "Products"
@@ -255,32 +278,46 @@ elif st.session_state.page == "About":
             st.session_state.page = "Contact"
             st.rerun()
     
-    st.markdown('<h3 style="color:#1e3a8a; text-align:center; font-size:2.5rem; margin:5rem 0 4rem 0;">Our Journey</h3>')
+    # JOURNEY TIMELINE - PERFECT ALIGNMENT
+    st.markdown('<h3 style="color:#1e3a8a; text-align:center; font-size:2.5rem; margin:5rem 0 3.5rem 0; font-weight:700;">Our Journey</h3>')
+    
     col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown("""
-        <div class="card gradient-2 gradient-card" style="height:280px;">
-            <span class="icon-large" style="font-size:4rem;">📅</span>
-            <h4 style="margin:1.5rem 0 1rem 0; font-size:1.8rem;">2021</h4>
-            <p style="font-size:1.2rem;">Founded in Pune</p>
+        <div class="card gradient-2 gradient-card" style="height:300px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <span class="icon-large" style="font-size:4.5rem;">📅</span>
+            <div style="margin-top:auto;">
+                <h4 style="font-size:2rem; margin-bottom:0.5rem; font-weight:800;">2021</h4>
+                <p style="font-size:1.25rem; opacity:0.95;">Founded in Pune</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
+    
     with col2:
         st.markdown("""
-        <div class="card gradient-3 gradient-card" style="height:280px;">
-            <span class="icon-large" style="font-size:4rem;">🚀</span>
-            <h4 style="margin:1.5rem 0 1rem 0; font-size:1.8rem;">2024</h4>
-            <p style="font-size:1.2rem;">10K+ homes automated</p>
+        <div class="card gradient-3 gradient-card" style="height:300px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <span class="icon-large" style="font-size:4.5rem;">🚀</span>
+            <div style="margin-top:auto;">
+                <h4 style="font-size:2rem; margin-bottom:0.5rem; font-weight:800;">2024</h4>
+                <p style="font-size:1.25rem; opacity:0.95;">10K+ homes automated</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
+    
     with col3:
         st.markdown("""
-        <div class="card gradient-4 gradient-card" style="height:280px;">
-            <span class="icon-large" style="font-size:4rem;">🎯</span>
-            <h4 style="margin:1.5rem 0 1rem 0; font-size:1.8rem;">2026</h4>
-            <p style="font-size:1.2rem;">50K homes target</p>
+        <div class="card gradient-4 gradient-card" style="height:300px; padding:3rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <span class="icon-large" style="font-size:4.5rem;">🎯</span>
+            <div style="margin-top:auto;">
+                <h4 style="font-size:2rem; margin-bottom:0.5rem; font-weight:800;">2026</h4>
+                <p style="font-size:1.25rem; opacity:0.95;">50K homes target</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
+    
+    # SPACING
+    st.markdown("<div style='height:3rem;'></div>", unsafe_allow_html=True)
+
 
 elif st.session_state.page == "Products":
     # FIXED HEIGHTS & PERFECT ALIGNMENT
