@@ -279,7 +279,10 @@ elif st.session_state.page == "About":
             st.rerun()
     
     # JOURNEY TIMELINE - PERFECT ALIGNMENT
-    st.markdown('<h3 style="color:#1e3a8a; text-align:center; font-size:2.5rem; margin:5rem 0 3.5rem 0; font-weight:700;">Our Journey</h3>')
+    st.markdown("""
+<h3 style="color:#1e3a8a; text-align:center; font-size:2.5rem; margin:5rem 0 3.5rem 0; font-weight:700;">Our Journey</h3>
+""", unsafe_allow_html=True)
+
     
     col1, col2, col3 = st.columns(3)
     with col1:
