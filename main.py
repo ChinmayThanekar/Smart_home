@@ -1,205 +1,165 @@
 import streamlit as st
-import pandas as pd
-from datetime import datetime
+import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-# =========================
-# PAGE CONFIG
-# =========================
+# ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="SmartNest Automation",
     page_icon="🏠",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    layout="wide"
 )
 
-# =========================
-# SESSION STATE
-# =========================
-if 'page' not in st.session_state:
+# ---------------- NAVIGATION ----------------
+if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-if 'form_submitted' not in st.session_state:
+if "form_submitted" not in st.session_state:
     st.session_state.form_submitted = False
 
-if 'form_data' not in st.session_state:
-    st.session_state.form_data = {}
+def navigate(page):
+    st.session_state.page = page
+    st.rerun()
 
-# =========================
-# PREMIUM CSS (YOUR UI KEPT)
-# =========================
+# ---------------- GOOGLE SHEETS ----------------
+def save_lead(data):
+    scope = [
+        "https://spreadsheets.google.com/feeds",
+        "https://www.googleapis.com/auth/drive"
+    ]
+
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(
+        st.secrets["gcp_service_account"], scope
+    )
+
+    client = gspread.authorize(creds)
+    sheet = client.open("SmartNest_Leads").sheet1
+
+    row = [
+        str(datetime.datetime.now()),
+        data["name"],
+        data["email"],
+        data["phone"],
+        data["package"],
+        data["home_type"],
+        data["budget"],
+        data["message"]
+    ]
+
+    sheet.append_row(row)
+
+# ---------------- WHATSAPP ----------------
+def whatsapp_redirect(name):
+    phone_number = "919876543210"
+    message = f"Hi, I just submitted a request on SmartNest. My name is {name}"
+    url = f"https://wa.me/{phone_number}?text={message.replace(' ', '%20')}"
+    st.markdown(f"[👉 Continue on WhatsApp]({url})")
+
+# ---------------- CSS ----------------
 st.markdown("""
 <style>
-body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
+.hero-title { font-size: 3rem; font-weight: bold; text-align: center; }
+.card { padding: 2rem; border-radius: 20px; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-.header {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    padding: 2rem;
-    border-radius: 0 0 25px 25px;
-    text-align: center;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: 800;
-}
-
-.card {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: 0.3s;
-}
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.hero {
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    padding: 5rem;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
+@media (max-width: 768px) {
+    .hero-title { font-size: 2rem !important; }
+    .card { padding: 1.5rem !important; }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
-# HEADER (FIXED)
-# =========================
-st.markdown('<div class="header">🏠 SmartNest Automation</div>', unsafe_allow_html=True)
+# ---------------- SIDEBAR ----------------
+with st.sidebar:
+    st.title("Navigation")
+    page = st.radio("", ["Home", "About", "Products", "Contact"])
 
-col1, col2, col3, col4 = st.columns(4)
+    if page != st.session_state.page:
+        navigate(page)
 
-if col1.button("Home"):
-    st.session_state.page = "Home"
-if col2.button("About"):
-    st.session_state.page = "About"
-if col3.button("Products"):
-    st.session_state.page = "Products"
-if col4.button("Contact"):
-    st.session_state.page = "Contact"
-
-# =========================
-# HOME
-# =========================
+# ---------------- HOME ----------------
 if st.session_state.page == "Home":
-
-    st.markdown("""
-    <div class="hero">
-        <h1>Transform Your Home into a Smart Haven</h1>
-        <p>Control lights, security & climate with one tap</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<h1 class='hero-title'>🏠 SmartNest Automation</h1>", unsafe_allow_html=True)
+    st.write("Transform your home into a smart home with automation.")
 
     col1, col2 = st.columns(2)
+    with col1:
+        st.button("Explore Packages", on_click=navigate, args=("Products",))
+    with col2:
+        st.button("Free Consultation", on_click=navigate, args=("Contact",))
 
-    if col1.button("🚀 Explore Packages"):
-        st.session_state.page = "Products"
-        st.rerun()
-
-    if col2.button("💬 Free Consultation"):
-        st.session_state.page = "Contact"
-        st.rerun()
-
-    st.divider()
-
-    col1, col2, col3 = st.columns(3)
-
-    col1.metric("🏠 Homes", "10K+")
-    col2.metric("⭐ Rating", "4.9")
-    col3.metric("🏙 Cities", "50+")
-
-# =========================
-# ABOUT
-# =========================
+# ---------------- ABOUT ----------------
 elif st.session_state.page == "About":
-    st.markdown("## About SmartNest")
+    st.title("About SmartNest")
+    st.write("We provide smart home automation solutions across India.")
 
-    st.markdown("""
-    <div class="card">
-    SmartNest delivers smart automation solutions across India.<br><br>
-    ✅ Smart Lighting<br>
-    ✅ Security Systems<br>
-    ✅ Voice Control<br>
-    </div>
-    """, unsafe_allow_html=True)
-
-# =========================
-# PRODUCTS
-# =========================
+# ---------------- PRODUCTS ----------------
 elif st.session_state.page == "Products":
-    st.markdown("## Packages")
+    st.title("Packages")
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown('<div class="card"><h3>Basic</h3><p>₹49,999</p></div>', unsafe_allow_html=True)
-        if st.button("Get Quote Basic"):
-            st.session_state.page = "Contact"
+        st.markdown("<div class='card'>Basic Package<br>₹49,999</div>", unsafe_allow_html=True)
+        st.button("Get Quote", on_click=navigate, args=("Contact",))
 
     with col2:
-        st.markdown('<div class="card"><h3>Standard</h3><p>₹99,999</p></div>', unsafe_allow_html=True)
-        if st.button("Get Quote Standard"):
-            st.session_state.page = "Contact"
+        st.markdown("<div class='card'>Standard Package<br>₹99,999</div>", unsafe_allow_html=True)
+        st.button("Get Quote", on_click=navigate, args=("Contact",))
 
     with col3:
-        st.markdown('<div class="card"><h3>Premium</h3><p>₹1,99,999</p></div>', unsafe_allow_html=True)
-        if st.button("Get Quote Premium"):
-            st.session_state.page = "Contact"
+        st.markdown("<div class='card'>Premium Package<br>₹1,99,999</div>", unsafe_allow_html=True)
+        st.button("Get Quote", on_click=navigate, args=("Contact",))
 
-# =========================
-# CONTACT + CRM
-# =========================
+# ---------------- CONTACT ----------------
 elif st.session_state.page == "Contact":
-    st.markdown("## Get Your Quote")
+
+    st.title("Contact Us")
 
     if not st.session_state.form_submitted:
-        with st.form("form"):
-            name = st.text_input("Name")
-            email = st.text_input("Email")
+        with st.form("lead_form"):
+            name = st.text_input("Name *")
+            email = st.text_input("Email *")
             phone = st.text_input("Phone")
+
             package = st.selectbox("Package", ["Basic", "Standard", "Premium"])
-            message = st.text_area("Requirements")
+            home_type = st.selectbox("Home Type", ["1-2 BHK", "3 BHK", "4+ BHK"])
+            budget = st.selectbox("Budget", ["50K-1L", "1-3L", "3L+"])
 
-            submit = st.form_submit_button("Submit")
+            message = st.text_area("Message")
 
-            if submit:
-                data = {
-                    "name": name,
-                    "email": email,
-                    "phone": phone,
-                    "package": package,
-                    "message": message,
-                    "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                }
+            submitted = st.form_submit_button("Submit")
 
-                try:
-                    df = pd.read_csv("leads.csv")
-                    df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
-                except:
-                    df = pd.DataFrame([data])
+            if submitted:
+                if not name or not email:
+                    st.error("Please fill required fields")
+                else:
+                    data = {
+                        "name": name,
+                        "email": email,
+                        "phone": phone,
+                        "package": package,
+                        "home_type": home_type,
+                        "budget": budget,
+                        "message": message
+                    }
 
-                df.to_csv("leads.csv", index=False)
+                    save_lead(data)
 
-                st.session_state.form_data = data
-                st.session_state.form_submitted = True
-                st.rerun()
+                    st.session_state.form_submitted = True
+                    st.session_state.lead_data = data
+                    st.rerun()
 
     else:
-        st.success("✅ Submitted successfully!")
-        st.json(st.session_state.form_data)
+        data = st.session_state.lead_data
 
-        st.markdown("[💬 WhatsApp](https://wa.me/919876543210)")
-        st.markdown("📞 Call: +91 98765 43210")
+        st.success("🎉 Request submitted successfully!")
+        st.json(data)
 
-        if st.button("Submit Again"):
+        st.markdown("### ⚡ Instant Response")
+        whatsapp_redirect(data["name"])
+
+        st.balloons()
+
+        if st.button("Submit Another Response"):
             st.session_state.form_submitted = False
             st.rerun()
-
-# =========================
-# FOOTER
-# =========================
-st.markdown("---")
-st.markdown("© SmartNest Automation")
