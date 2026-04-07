@@ -1,165 +1,147 @@
 import streamlit as st
-import datetime
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+import json
+import os
+from datetime import datetime
 
-# ---------------- PAGE CONFIG ----------------
+# Page config
 st.set_page_config(
-    page_title="SmartNest Automation",
+    page_title="SmartNest Automation", 
     page_icon="🏠",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-# ---------------- NAVIGATION ----------------
-if "page" not in st.session_state:
-    st.session_state.page = "Home"
+# ----------------------
+# LEAD STORAGE FUNCTION
+# ----------------------
+def save_lead(data):
+    file_path = "leads.json"
+    leads = []
 
-if "form_submitted" not in st.session_state:
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            try:
+                leads = json.load(f)
+            except:
+                leads = []
+
+    leads.append(data)
+
+    with open(file_path, "w") as f:
+        json.dump(leads, f, indent=4)
+
+# ----------------------
+# SESSION STATE
+# ----------------------
+if 'page' not in st.session_state:
+    st.session_state.page = "Home"
+if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
 
-def navigate(page):
-    st.session_state.page = page
-    st.rerun()
+# ----------------------
+# FIXED HEADER NAVIGATION (NO JS)
+# ----------------------
+col1, col2, col3, col4 = st.columns(4)
 
-# ---------------- GOOGLE SHEETS ----------------
-def save_lead(data):
-    scope = [
-        "https://spreadsheets.google.com/feeds",
-        "https://www.googleapis.com/auth/drive"
-    ]
+with col1:
+    if st.button("🏠 Home"):
+        st.session_state.page = "Home"
+        st.rerun()
 
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(
-        st.secrets["gcp_service_account"], scope
-    )
+with col2:
+    if st.button("👨‍💼 About"):
+        st.session_state.page = "About"
+        st.rerun()
 
-    client = gspread.authorize(creds)
-    sheet = client.open("SmartNest_Leads").sheet1
+with col3:
+    if st.button("📦 Products"):
+        st.session_state.page = "Products"
+        st.rerun()
 
-    row = [
-        str(datetime.datetime.now()),
-        data["name"],
-        data["email"],
-        data["phone"],
-        data["package"],
-        data["home_type"],
-        data["budget"],
-        data["message"]
-    ]
+with col4:
+    if st.button("💬 Contact"):
+        st.session_state.page = "Contact"
+        st.rerun()
 
-    sheet.append_row(row)
-
-# ---------------- WHATSAPP ----------------
-def whatsapp_redirect(name):
-    phone_number = "919876543210"
-    message = f"Hi, I just submitted a request on SmartNest. My name is {name}"
-    url = f"https://wa.me/{phone_number}?text={message.replace(' ', '%20')}"
-    st.markdown(f"[👉 Continue on WhatsApp]({url})")
-
-# ---------------- CSS ----------------
+# ----------------------
+# FLOATING WHATSAPP BUTTON
+# ----------------------
 st.markdown("""
 <style>
-.hero-title { font-size: 3rem; font-weight: bold; text-align: center; }
-.card { padding: 2rem; border-radius: 20px; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-
-@media (max-width: 768px) {
-    .hero-title { font-size: 2rem !important; }
-    .card { padding: 1.5rem !important; }
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+.whatsapp-float a {
+    text-decoration: none;
+}
+.whatsapp-float img {
+    width: 60px;
+    height: 60px;
 }
 </style>
+<div class="whatsapp-float">
+    <a href="https://wa.me/919876543210" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" />
+    </a>
+</div>
 """, unsafe_allow_html=True)
 
-# ---------------- SIDEBAR ----------------
+# ----------------------
+# SIDEBAR
+# ----------------------
 with st.sidebar:
-    st.title("Navigation")
-    page = st.radio("", ["Home", "About", "Products", "Contact"])
+    selected = st.selectbox("Choose Page:", ["Home", "About", "Products", "Contact"],
+                          index=["Home", "About", "Products", "Contact"].index(st.session_state.page))
+    if selected != st.session_state.page:
+        st.session_state.page = selected
+        st.rerun()
 
-    if page != st.session_state.page:
-        navigate(page)
-
-# ---------------- HOME ----------------
-if st.session_state.page == "Home":
-    st.markdown("<h1 class='hero-title'>🏠 SmartNest Automation</h1>", unsafe_allow_html=True)
-    st.write("Transform your home into a smart home with automation.")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button("Explore Packages", on_click=navigate, args=("Products",))
-    with col2:
-        st.button("Free Consultation", on_click=navigate, args=("Contact",))
-
-# ---------------- ABOUT ----------------
-elif st.session_state.page == "About":
-    st.title("About SmartNest")
-    st.write("We provide smart home automation solutions across India.")
-
-# ---------------- PRODUCTS ----------------
-elif st.session_state.page == "Products":
-    st.title("Packages")
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown("<div class='card'>Basic Package<br>₹49,999</div>", unsafe_allow_html=True)
-        st.button("Get Quote", on_click=navigate, args=("Contact",))
-
-    with col2:
-        st.markdown("<div class='card'>Standard Package<br>₹99,999</div>", unsafe_allow_html=True)
-        st.button("Get Quote", on_click=navigate, args=("Contact",))
-
-    with col3:
-        st.markdown("<div class='card'>Premium Package<br>₹1,99,999</div>", unsafe_allow_html=True)
-        st.button("Get Quote", on_click=navigate, args=("Contact",))
-
-# ---------------- CONTACT ----------------
-elif st.session_state.page == "Contact":
-
-    st.title("Contact Us")
-
+# ----------------------
+# CONTACT PAGE (UPDATED)
+# ----------------------
+if st.session_state.page == "Contact":
     if not st.session_state.form_submitted:
-        with st.form("lead_form"):
-            name = st.text_input("Name *")
-            email = st.text_input("Email *")
+        with st.form("interest_form", clear_on_submit=True):
+            name = st.text_input("Full Name")
+            email = st.text_input("Email")
             phone = st.text_input("Phone")
-
-            package = st.selectbox("Package", ["Basic", "Standard", "Premium"])
-            home_type = st.selectbox("Home Type", ["1-2 BHK", "3 BHK", "4+ BHK"])
-            budget = st.selectbox("Budget", ["50K-1L", "1-3L", "3L+"])
-
+            package = st.selectbox("Package", ["Basic Package", "Standard Package", "Premium Package"])
+            home_type = st.selectbox("Home Type", ["1-2 BHK", "3 BHK", "4+ BHK", "Villa/Independent"])
+            budget = st.selectbox("Budget", ["Economy", "Mid", "Premium"])
             message = st.text_area("Message")
 
             submitted = st.form_submit_button("Submit")
 
             if submitted:
-                if not name or not email:
-                    st.error("Please fill required fields")
-                else:
-                    data = {
-                        "name": name,
-                        "email": email,
-                        "phone": phone,
-                        "package": package,
-                        "home_type": home_type,
-                        "budget": budget,
-                        "message": message
-                    }
+                lead_data = {
+                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "package": package,
+                    "home_type": home_type,
+                    "budget": budget,
+                    "message": message
+                }
 
-                    save_lead(data)
+                save_lead(lead_data)
+                st.session_state.form_submitted = True
+                st.rerun()
 
-                    st.session_state.form_submitted = True
-                    st.session_state.lead_data = data
-                    st.rerun()
+    if st.session_state.form_submitted:
+        st.success("Lead saved successfully!")
 
-    else:
-        data = st.session_state.lead_data
+# ----------------------
+# OTHER PAGES PLACEHOLDER
+# ----------------------
+if st.session_state.page == "Home":
+    st.write("Home Page Content")
 
-        st.success("🎉 Request submitted successfully!")
-        st.json(data)
+if st.session_state.page == "About":
+    st.write("About Page Content")
 
-        st.markdown("### ⚡ Instant Response")
-        whatsapp_redirect(data["name"])
-
-        st.balloons()
-
-        if st.button("Submit Another Response"):
-            st.session_state.form_submitted = False
-            st.rerun()
+if st.session_state.page == "Products":
+    st.write("Products Page Content")
