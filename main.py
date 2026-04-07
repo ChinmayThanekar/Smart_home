@@ -142,24 +142,24 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+with col1:
+    if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
             st.session_state.page = "Home"
             st.session_state.form_submitted = False
             st.rerun()
-    with col2:
+with col2:
     if st.button("👨‍💼 About",  key="home_sec", use_container_width=True):
         st.session_state.page = "About"
         st.session_state.form_submitted = False
         st.rerun()
 
-    with col3:
+with col3:
     if st.button("📦 View Packages", key="contact_products", use_container_width=True):
         st.session_state.page = "Products"
         st.session_state.form_submitted = False
         st.rerun()
 
-    with col4:
+with col4:
     if st.button("💬 Contact", key="about_chat", use_container_width=True):
         st.session_state.page = "Contact"
         st.session_state.form_submitted = False
