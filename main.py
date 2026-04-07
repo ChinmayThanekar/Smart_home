@@ -172,34 +172,31 @@ if "page" not in st.session_state:
 # Layout
 st.markdown('<div class="banner">', unsafe_allow_html=True)
 
-col2 = st.columns([3,7])
 
-# Buttons
-with col2:
-    b1, b2, b3, b4 = st.columns(4)
+b1, b2, b3, b4 = st.columns(4)
 
-    with b1:
-        if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
-            st.session_state.page = "Home"
-            st.session_state.form_submitted = False
-            st.rerun()
+with b1:
+    if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+        st.session_state.page = "Home"
+        st.session_state.form_submitted = False
+        st.rerun()
 
-    with b2:
-        if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
-            st.session_state.page = "About"
-            st.session_state.form_submitted = False
-            st.rerun()
+with b2:
+    if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
+        st.session_state.page = "About"
+        st.session_state.form_submitted = False
+        st.rerun()
 
-    with b3:
-        if st.button("📦 View Packages", key="products_main", use_container_width=True):
-            st.session_state.page = "Products"
-            st.session_state.form_submitted = False
-            st.rerun()
-    with b4:
-        if st.button("💬 Contact", key="about_main", use_container_width=True):
-            st.session_state.page = "Contact"
-            st.session_state.form_submitted = False
-            st.rerun()
+with b3:
+    if st.button("📦 View Packages", key="products_main", use_container_width=True):
+        st.session_state.page = "Products"
+        st.session_state.form_submitted = False
+        st.rerun()
+with b4:
+    if st.button("💬 Contact", key="about_main", use_container_width=True):
+        st.session_state.page = "Contact"
+        st.session_state.form_submitted = False
+        st.rerun()
 
 st.markdown('</div>', unsafe_allow_html=True)
     
