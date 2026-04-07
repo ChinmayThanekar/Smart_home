@@ -141,6 +141,34 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+# ----------------------
+# FLOATING WHATSAPP BUTTON
+# ----------------------
+st.markdown("""
+<style>
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+.whatsapp-float a {
+    text-decoration: none;
+}
+.whatsapp-float img {
+    width: 60px;
+    height: 60px;
+}
+</style>
+<div class="whatsapp-float">
+    <a href="https://wa.me/919876543210" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" />
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+
 # ENHANCED SIDEBAR
 with st.sidebar:
     st.markdown("## 🚀 Quick Navigation")
