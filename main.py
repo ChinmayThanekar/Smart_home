@@ -181,7 +181,7 @@ with col2:
         st.rerun()
 
     with c2:
-         if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
+        if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
         st.session_state.page = "About"
         st.session_state.form_submitted = False
         st.rerun()
