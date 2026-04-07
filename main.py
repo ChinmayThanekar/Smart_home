@@ -8,7 +8,8 @@ from datetime import datetime
 st.set_page_config(
     page_title="SmartNest Automation",
     page_icon="🏠",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 # =========================
@@ -24,32 +25,73 @@ if 'form_data' not in st.session_state:
     st.session_state.form_data = {}
 
 # =========================
-# NAVBAR
+# PREMIUM CSS (YOUR UI KEPT)
 # =========================
-st.markdown("## 🏠 SmartNest Automation")
+st.markdown("""
+<style>
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.header {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    padding: 2rem;
+    border-radius: 0 0 25px 25px;
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.hero {
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    padding: 5rem;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# =========================
+# HEADER (FIXED)
+# =========================
+st.markdown('<div class="header">🏠 SmartNest Automation</div>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
 
-if col1.button("🏠 Home"):
+if col1.button("Home"):
     st.session_state.page = "Home"
-
-if col2.button("👨‍💼 About"):
+if col2.button("About"):
     st.session_state.page = "About"
-
-if col3.button("📦 Products"):
+if col3.button("Products"):
     st.session_state.page = "Products"
-
-if col4.button("💬 Contact"):
+if col4.button("Contact"):
     st.session_state.page = "Contact"
 
-st.divider()
-
 # =========================
-# HOME PAGE
+# HOME
 # =========================
 if st.session_state.page == "Home":
-    st.title("Transform Your Home into a Smart Haven")
-    st.write("Control lights, security & climate with one tap.")
+
+    st.markdown("""
+    <div class="hero">
+        <h1>Transform Your Home into a Smart Haven</h1>
+        <p>Control lights, security & climate with one tap</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
@@ -64,86 +106,75 @@ if st.session_state.page == "Home":
     st.divider()
 
     col1, col2, col3 = st.columns(3)
-    col1.metric("🏠 Homes Automated", "10K+")
-    col2.metric("⭐ Rating", "4.9/5")
-    col3.metric("🏙 Cities Covered", "50+")
+
+    col1.metric("🏠 Homes", "10K+")
+    col2.metric("⭐ Rating", "4.9")
+    col3.metric("🏙 Cities", "50+")
 
 # =========================
-# ABOUT PAGE
+# ABOUT
 # =========================
 elif st.session_state.page == "About":
-    st.title("About SmartNest")
+    st.markdown("## About SmartNest")
 
-    st.write("""
-    SmartNest Automation provides modern smart home solutions across India.
-
-    ✅ Smart Lighting  
-    ✅ Security Systems  
-    ✅ Voice Control (Alexa / Google)  
-    ✅ Full Home Automation  
-
-    We help you transform your home into a smart, secure, and energy-efficient space.
-    """)
+    st.markdown("""
+    <div class="card">
+    SmartNest delivers smart automation solutions across India.<br><br>
+    ✅ Smart Lighting<br>
+    ✅ Security Systems<br>
+    ✅ Voice Control<br>
+    </div>
+    """, unsafe_allow_html=True)
 
 # =========================
-# PRODUCTS PAGE
+# PRODUCTS
 # =========================
 elif st.session_state.page == "Products":
-    st.title("Our Packages")
+    st.markdown("## Packages")
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.subheader("📦 Basic Package")
-        st.write("For 1-2 BHK")
-        st.write("💰 ₹49,999")
-        if st.button("Get Quote - Basic"):
+        st.markdown('<div class="card"><h3>Basic</h3><p>₹49,999</p></div>', unsafe_allow_html=True)
+        if st.button("Get Quote Basic"):
             st.session_state.page = "Contact"
-            st.rerun()
 
     with col2:
-        st.subheader("⭐ Standard Package")
-        st.write("For 3 BHK")
-        st.write("💰 ₹99,999")
-        if st.button("Get Quote - Standard"):
+        st.markdown('<div class="card"><h3>Standard</h3><p>₹99,999</p></div>', unsafe_allow_html=True)
+        if st.button("Get Quote Standard"):
             st.session_state.page = "Contact"
-            st.rerun()
 
     with col3:
-        st.subheader("👑 Premium Package")
-        st.write("For Villas / Luxury Homes")
-        st.write("💰 ₹1,99,999")
-        if st.button("Get Quote - Premium"):
+        st.markdown('<div class="card"><h3>Premium</h3><p>₹1,99,999</p></div>', unsafe_allow_html=True)
+        if st.button("Get Quote Premium"):
             st.session_state.page = "Contact"
-            st.rerun()
 
 # =========================
-# CONTACT PAGE (CRM)
+# CONTACT + CRM
 # =========================
 elif st.session_state.page == "Contact":
-    st.title("Get Your Smart Home Quote")
+    st.markdown("## Get Your Quote")
 
     if not st.session_state.form_submitted:
-        with st.form("lead_form"):
-            name = st.text_input("👤 Full Name")
-            email = st.text_input("📧 Email")
-            phone = st.text_input("📱 Phone")
-            package = st.selectbox("📦 Package", ["Basic", "Standard", "Premium"])
-            message = st.text_area("💬 Requirements")
+        with st.form("form"):
+            name = st.text_input("Name")
+            email = st.text_input("Email")
+            phone = st.text_input("Phone")
+            package = st.selectbox("Package", ["Basic", "Standard", "Premium"])
+            message = st.text_area("Requirements")
 
-            submitted = st.form_submit_button("🚀 Submit")
+            submit = st.form_submit_button("Submit")
 
-            if submitted:
+            if submit:
                 data = {
                     "name": name,
                     "email": email,
                     "phone": phone,
                     "package": package,
                     "message": message,
-                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
 
-                # Save to CSV (CRM)
                 try:
                     df = pd.read_csv("leads.csv")
                     df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
@@ -157,19 +188,18 @@ elif st.session_state.page == "Contact":
                 st.rerun()
 
     else:
-        st.success("✅ Lead submitted successfully!")
+        st.success("✅ Submitted successfully!")
         st.json(st.session_state.form_data)
 
-        st.markdown("### 📞 Instant Contact")
-        st.markdown("[💬 Chat on WhatsApp](https://wa.me/919876543210)")
-        st.markdown("📞 Call Now: +91 98765 43210")
+        st.markdown("[💬 WhatsApp](https://wa.me/919876543210)")
+        st.markdown("📞 Call: +91 98765 43210")
 
-        if st.button("Submit Another Response"):
+        if st.button("Submit Again"):
             st.session_state.form_submitted = False
             st.rerun()
 
 # =========================
 # FOOTER
 # =========================
-st.divider()
-st.markdown("© 2026 SmartNest Automation | India")
+st.markdown("---")
+st.markdown("© SmartNest Automation")
