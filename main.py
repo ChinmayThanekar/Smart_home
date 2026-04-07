@@ -130,6 +130,36 @@ if 'form_submitted' not in st.session_state:
 
 # SPECTACULAR ANIMATED HEADER
 st.markdown("""
+<style>
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #0e1117;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav button:hover {
+    color: #00c8ff;
+    transform: scale(1.1);
+}
+</style>
 <div class="header-row">
     <div class="header-title">🏠 SmartNest Automation</div>
     <div class="header-nav">
@@ -137,6 +167,30 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Layout
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+            st.session_state.page = "Home"
+            st.session_state.form_submitted = False
+            st.rerun()
+with col2:
+    if st.button("👨‍💼 About",  key="home_sec", use_container_width=True):
+        st.session_state.page = "About"
+        st.session_state.form_submitted = False
+        st.rerun()
+
+with col3:
+    if st.button("📦 View Packages", key="contact_products", use_container_width=True):
+        st.session_state.page = "Products"
+        st.session_state.form_submitted = False
+        st.rerun()
+
+with col4:
+    if st.button("💬 Contact", key="about_chat", use_container_width=True):
+        st.session_state.page = "Contact"
+        st.session_state.form_submitted = False
+        st.rerun()
 
 
 # ----------------------
