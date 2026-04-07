@@ -167,6 +167,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+if "page" not in st.session_state:
+    st.session_state.page = "home"
 # Layout
 col1, col2, col3, col4 = st.columns(4)
 with col1:
