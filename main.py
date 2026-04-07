@@ -160,39 +160,44 @@ st.markdown("""
     transform: scale(1.1);
 }
 </style>
-<div class="header-row">
-    <div class="header-title">🏠 SmartNest Automation</div>
-    <div class="header-nav">
-    </div>
-</div>
 """, unsafe_allow_html=True)
 
 if "page" not in st.session_state:
     st.session_state.page = "home"
 # Layout
-col1, col2, col3, col4 = st.columns(4)
+
+col1, col2 = st.columns([4,6])
+
 with col1:
-    if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+    st.markdown('<div class="banner-title">🏠 SmartNest Automation</div>', unsafe_allow_html=True)
+
+with col2:
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+        if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
         st.session_state.page = "Home"
         st.session_state.form_submitted = False
         st.rerun()
-with col2:
-    if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
+
+    with c2:
+         if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
         st.session_state.page = "About"
         st.session_state.form_submitted = False
         st.rerun()
 
-with col3:
-    if st.button("📦 View Packages", key="products_main", use_container_width=True):
+    with c3:
+        if st.button("📦 View Packages", key="products_main", use_container_width=True):
         st.session_state.page = "Products"
         st.session_state.form_submitted = False
         st.rerun()
 
-with col4:
-    if st.button("💬 Contact", key="about_main", use_container_width=True):
+    with c4:
+        if st.button("💬 Contact", key="about_main", use_container_width=True):
         st.session_state.page = "Contact"
         st.session_state.form_submitted = False
         st.rerun()
+    
 
 
 # ----------------------
