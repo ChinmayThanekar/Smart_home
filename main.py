@@ -130,16 +130,63 @@ if 'form_submitted' not in st.session_state:
 
 # SPECTACULAR ANIMATED HEADER
 st.markdown("""
-<div class="header-row">
-    <div class="header-title">🏠 SmartNest Automation</div>
-    <div class="header-nav">
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=home]').click()">🏠 Home</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=about]').click()">👨‍💼 About</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=product]').click()">📦 Products</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=contact]').click()">💬 Contact</button>
-    </div>
-</div>
+<style>
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #0e1117;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav button:hover {
+    color: #00c8ff;
+    transform: scale(1.1);
+}
+</style>
 """, unsafe_allow_html=True)
+
+# State
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+# Layout
+col1, col2 = st.columns([3,5])
+
+with col1:
+    st.markdown('<div class="title">🏠 SmartNest Automation</div>', unsafe_allow_html=True)
+
+with col2:
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+        if st.button("Home"):
+            st.session_state.page = "home"
+    with c2:
+        if st.button("About"):
+            st.session_state.page = "about"
+    with c3:
+        if st.button("Products"):
+            st.session_state.page = "product"
+    with c4:
+        if st.button("Contact"):
+            st.session_state.page = "contact"
 
 
 # ----------------------
