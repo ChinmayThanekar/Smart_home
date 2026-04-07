@@ -171,12 +171,13 @@ st.markdown("""
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
-            st.session_state.page = "Home"
-            st.session_state.form_submitted = False
-            st.rerun()
+        st.session_state.page = "Home"
+        st.session_state.form_submitted = False
+        st.rerun()
 with col2:
-    if st.button("👨‍💼 About",  key="home_sec", use_container_width=True):
+    if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
         st.session_state.page = "About"
+        st.session_state.form_submitted = False
         st.rerun()
 
 with col3:
@@ -278,7 +279,7 @@ if st.session_state.page == "Home":
             <p style="font-size:1.2rem; opacity:0.95; line-height:1.7;">End-to-end encryption<br><strong>Zero data leaks</strong> guaranteed</p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("🔒 Learn More", key="home_sec", use_container_width=True):
+        if st.button("🔒 Learn More", key="home_learn_more", use_container_width=True):
             st.session_state.page = "About"
             st.rerun()
     
