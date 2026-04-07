@@ -177,7 +177,6 @@ with col1:
 with col2:
     if st.button("👨‍💼 About",  key="home_sec", use_container_width=True):
         st.session_state.page = "About"
-        st.session_state.form_submitted = False
         st.rerun()
 
 with col3:
