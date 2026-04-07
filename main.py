@@ -133,46 +133,9 @@ st.markdown("""
 <div class="header-row">
     <div class="header-title">🏠 SmartNest Automation</div>
     <div class="header-nav">
-        
     </div>
 </div>
 """, unsafe_allow_html=True)
-st.markdown("""
-<style>
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #0e1117;
-}
-
-.title {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-}
-
-.nav button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.nav button:hover {
-    color: #00c8ff;
-    transform: scale(1.1);
-}
-</style>
-""", unsafe_allow_html=True)
-
-# State
-if "page" not in st.session_state:
-    st.session_state.page = "home"
 
 # Layout
 col1, col2, col3, col4 = st.columns(4)
@@ -224,7 +187,6 @@ st.markdown("""
     </a>
 </div>
 """, unsafe_allow_html=True)
-
 
 # ENHANCED SIDEBAR
 with st.sidebar:
