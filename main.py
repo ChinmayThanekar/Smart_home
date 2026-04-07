@@ -133,10 +133,7 @@ st.markdown("""
 <div class="header-row">
     <div class="header-title">🏠 SmartNest Automation</div>
     <div class="header-nav">
-        #<button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=home]').click()">🏠 Home</button>
-        #<button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=about]').click()">👨‍💼 About</button>
-        #<button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=product]').click()">📦 Products</button>
-        #<button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=contact]').click()">💬 Contact</button>
+        
     </div>
 </div>
 """, unsafe_allow_html=True)
