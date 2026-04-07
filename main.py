@@ -173,30 +173,29 @@ with col1:
 
 with col2:
     c1, c2, c3, c4 = st.columns(4)
-
     with c1:
         if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
-        st.session_state.page = "Home"
-        st.session_state.form_submitted = False
-        st.rerun()
+            st.session_state.page = "Home"
+            st.session_state.form_submitted = False
+            st.rerun()
 
     with c2:
         if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
-        st.session_state.page = "About"
-        st.session_state.form_submitted = False
-        st.rerun()
+            st.session_state.page = "About"
+            st.session_state.form_submitted = False
+            st.rerun()
 
     with c3:
         if st.button("📦 View Packages", key="products_main", use_container_width=True):
-        st.session_state.page = "Products"
-        st.session_state.form_submitted = False
-        st.rerun()
+            st.session_state.page = "Products"
+            st.session_state.form_submitted = False
+            st.rerun()
 
     with c4:
         if st.button("💬 Contact", key="about_main", use_container_width=True):
-        st.session_state.page = "Contact"
-        st.session_state.form_submitted = False
-        st.rerun()
+            st.session_state.page = "Contact"
+            st.session_state.form_submitted = False
+            st.rerun()
     
 
 
