@@ -160,6 +160,11 @@ st.markdown("""
     transform: scale(1.1);
 }
 </style>
+<div class="header-row">
+    <div class="header-title">🏠 SmartNest Automation</div>
+    <div class="header-nav">
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
 if "page" not in st.session_state:
