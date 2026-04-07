@@ -181,7 +181,7 @@ with col2:
         st.rerun()
 
 with col3:
-    if st.button("📦 View Packages", key="contact_products", use_container_width=True):
+    if st.button("📦 View Packages", key="products_main", use_container_width=True):
         st.session_state.page = "Products"
         st.session_state.form_submitted = False
         st.rerun()
