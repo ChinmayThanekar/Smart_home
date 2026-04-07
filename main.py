@@ -277,7 +277,9 @@ if st.session_state.page == "Home":
     with col4: st.metric("🏢", "50+", "Cities Covered")
     
     # ANIMATED FEATURE CARDS
-    st.markdown('<h2 style="text-align:center; color:#1e3a8a; font-size:3rem; margin:5rem 0 4rem 0; font-weight:800;">Why Choose SmartNest?</h2>')
+    st.markdown(
+    '<h2 style="text-align:center; color:#1e3a8a; font-size:3rem; margin:5rem 0 4rem 0; font-weight:800;">Why Choose SmartNest?</h2>',
+    unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     
     with col1:
