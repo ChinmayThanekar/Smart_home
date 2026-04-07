@@ -172,11 +172,7 @@ if "page" not in st.session_state:
 # Layout
 st.markdown('<div class="banner">', unsafe_allow_html=True)
 
-col1, col2 = st.columns([3,7])
-
-# Title
-with col1:
-    st.markdown('<p class="title">🏠 SmartNest Automation</p>', unsafe_allow_html=True)
+col2 = st.columns([3,7])
 
 # Buttons
 with col2:
