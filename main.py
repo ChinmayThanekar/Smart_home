@@ -187,7 +187,7 @@ with col3:
         st.rerun()
 
 with col4:
-    if st.button("💬 Contact", key="about_chat", use_container_width=True):
+    if st.button("💬 Contact", key="about_main", use_container_width=True):
         st.session_state.page = "Contact"
         st.session_state.form_submitted = False
         st.rerun()
