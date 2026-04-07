@@ -491,7 +491,7 @@ elif st.session_state.page == "Contact":
     
     col1, col2 = st.columns([1, 1])
     with col1:
-        if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+        if st.button("🏠 Back to Home", key="home_back", use_container_width=True):
             st.session_state.page = "Home"
             st.session_state.form_submitted = False
             st.rerun()
