@@ -587,7 +587,7 @@ elif st.session_state.page == "Contact":
    <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
         width="100%" 
-        height="900" 
+        height="1000" 
         frameborder="0" 
         marginheight="0" 
         marginwidth="0"
@@ -609,21 +609,6 @@ elif st.session_state.page == "Contact":
             st.session_state.page = "Products"
             st.session_state.form_submitted = False
             st.rerun()
-    
-    st.markdown("""
-<div style="display:flex; justify-content:center;">
-    <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
-        width="100%" 
-        height="900" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        style="border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.1);">
-        Loading…
-    </iframe>
-</div>
-""", unsafe_allow_html=True)
             
     
     if st.session_state.form_submitted:
