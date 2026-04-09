@@ -584,9 +584,15 @@ elif st.session_state.page == "Contact":
         Fill the form below • Our experts will contact you within 24 hours
     </div>
 
-    <iframe 
-        class="glass-iframe"
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true">
+   <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
+        width="100%" 
+        height="900" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0"
+        style="border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+        Loading…
     </iframe>
 </div>
 
