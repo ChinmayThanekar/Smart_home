@@ -505,15 +505,15 @@ elif st.session_state.page == "Contact":
     padding: 2rem;
     border-radius: 30px;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: color-mix(in srgb, var(--background-color) 85%, transparent);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid color-mix(in srgb, var(--text-color) 20%, transparent);
 
     box-shadow: 
-        0 25px 60px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.3);
+        0 25px 60px rgba(0,0,0,0.3),
+        inset 0 1px 0 color-mix(in srgb, white 20%, transparent);
 
     position: relative;
     overflow: hidden;
@@ -531,7 +531,7 @@ elif st.session_state.page == "Contact":
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255,255,255,0.2),
+        color-mix(in srgb, var(--text-color) 15%, transparent),
         transparent
     );
 
@@ -544,30 +544,30 @@ elif st.session_state.page == "Contact":
     text-align: center;
     font-size: 2.8rem;
     font-weight: 800;
-    color: white;
+    color: var(--text-color);
     margin-bottom: 1rem;
 }
 
 /* SUBTITLE */
 .glass-subtitle {
     text-align: center;
-    color: rgba(255,255,255,0.85);
+    color: color-mix(in srgb, var(--text-color) 70%, transparent);
     font-size: 1.2rem;
     margin-bottom: 2rem;
 }
 
-/* IFRAME STYLE */
+/* IFRAME */
 .glass-iframe {
     width: 100%;
     height: 750px;
     border: none;
     border-radius: 20px;
 
-    background: rgba(255,255,255,0.9);
+    background: color-mix(in srgb, var(--background-color) 95%, white 5%);
 
     box-shadow: 
-        0 20px 40px rgba(0,0,0,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.4);
+        0 20px 40px rgba(0,0,0,0.25),
+        inset 0 1px 0 color-mix(in srgb, white 20%, transparent);
 }
 
 /* ANIMATION */
