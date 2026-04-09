@@ -76,7 +76,26 @@ h1, h2, h3, .header-title {
 /* HERO */
 .hero-section { 
     background: linear-gradient(135deg, #1b4332, #2d6a4f);
-    color: #f8f5ef !important;
+    height: 80vh; 
+    border-radius: 30px; 
+    margin: 4rem 0;
+    color: #f5f1e8;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 6rem;
+    position: relative;
+}
+
+/* HERO CONTENT */
+.hero-content {
+    max-width: 700px;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+    animation: luxuryFadeUp 1.2s ease;
 }
 
 /* MAIN TITLE */
@@ -88,20 +107,23 @@ h1, h2, h3, .header-title {
 /* GRADIENT TEXT FIX (IMPORTANT) */
 .hero-title span {
     background: none !important;
-    -webkit-text-fill-color: #e6d3a3 !important; /* champagne gold */
+    -webkit-text-fill-color: #e6d3a3 !important;
     color: #e6d3a3 !important;
 }
 
-/* SUBTITLE */
 .hero-subtitle { 
-    color: #d8d3c3 !important;   /* soft readable beige */
-    opacity: 1 !important;
+    color: #d8d3c3 !important;
+    margin-top: 1rem;
+    font-size: 1.1rem;
 }
 
 /* ICONS (make them subtle, not distracting) */
 .hero-section div[style*="font-size:4rem"] {
-    opacity: 0.6;
-    filter: grayscale(30%);
+    position: absolute !important;
+    opacity: 0.25;
+    filter: grayscale(60%);
+    animation: luxuryFloat 8s ease-in-out infinite !important;
+    z-index: 0;
 }
 
 /* FLOATING ICONS */
@@ -136,9 +158,13 @@ h1, h2, h3, .header-title {
 .stButton > button {
     background: #e6d3a3 !important; 
     color: #1b4332 !important; 
-    border-radius: 35px !important;
+    border-radius: 30px !important;
     font-weight: 600 !important;
     border: none !important;
+    height: 50px !important;
+    font-size: 1rem !important;
+    max-width: 320px;
+    margin: 0 auto;
     box-shadow: 0 10px 25px rgba(230,211,163,0.4) !important;
     transition: 0.3s !important;
 }
