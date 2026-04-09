@@ -76,23 +76,32 @@ h1, h2, h3, .header-title {
 /* HERO */
 .hero-section { 
     background: linear-gradient(135deg, #1b4332, #2d6a4f);
-    height: 80vh; 
-    border-radius: 30px; 
-    margin: 4rem 0;
-    color: #f5f1e8;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-    position: relative;
+    color: #f8f5ef !important;
 }
-.hero-content {
-    animation: luxuryFadeUp 1.2s ease;
-}
+
+/* MAIN TITLE */
 .hero-title { 
-    font-size: 4.5rem; 
-    font-weight: 700; 
-    color: #e6d3a3;
+    color: #f8f5ef !important;   /* clean white */
+    font-weight: 700;
 }
+
+/* GRADIENT TEXT FIX (IMPORTANT) */
+.hero-title span {
+    background: none !important;
+    -webkit-text-fill-color: #e6d3a3 !important; /* champagne gold */
+    color: #e6d3a3 !important;
+}
+
+/* SUBTITLE */
 .hero-subtitle { 
-    color: #d8d3c3;
+    color: #d8d3c3 !important;   /* soft readable beige */
+    opacity: 1 !important;
+}
+
+/* ICONS (make them subtle, not distracting) */
+.hero-section div[style*="font-size:4rem"] {
+    opacity: 0.6;
+    filter: grayscale(30%);
 }
 
 /* FLOATING ICONS */
