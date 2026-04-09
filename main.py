@@ -2,7 +2,7 @@ import streamlit as st
 
 # Page config
 st.set_page_config(
-    page_title="SmartNest Automation", 
+    page_title="Niva Novus", 
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="collapsed"
