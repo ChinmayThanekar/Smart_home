@@ -587,7 +587,7 @@ elif st.session_state.page == "Contact":
    <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
         width="100%" 
-        height="1150" 
+        height="1300" 
         frameborder="0" 
         marginheight="0" 
         marginwidth="0"
