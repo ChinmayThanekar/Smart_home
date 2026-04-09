@@ -603,8 +603,8 @@ elif st.session_state.page == "Contact":
             st.session_state.page = "Products"
             st.session_state.form_submitted = False
             st.rerun()
-    if not st.session_state.form_submitted:
-        with st.markdown("""
+    
+    st.markdown("""
 <div style="display:flex; justify-content:center;">
     <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
@@ -619,9 +619,6 @@ elif st.session_state.page == "Contact":
 </div>
 """, unsafe_allow_html=True)
             
-            if submitted:
-                st.session_state.form_submitted = True
-                st.rerun()
     
     if st.session_state.form_submitted:
         st.markdown("""
