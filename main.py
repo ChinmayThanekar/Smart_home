@@ -2,7 +2,7 @@ import streamlit as st
 
 # Page config
 st.set_page_config(
-    page_title="SmartNest Automation", 
+    page_title="Niva Novus", 
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -130,14 +130,101 @@ if 'form_submitted' not in st.session_state:
 
 # SPECTACULAR ANIMATED HEADER
 st.markdown("""
+<style>
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #0e1117;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav button:hover {
+    color: #00c8ff;
+    transform: scale(1.1);
+}
+</style>
 <div class="header-row">
-    <div class="header-title">🏠 SmartNest Automation</div>
+    <div class="header-title">🏠 Niva Novus</div>
     <div class="header-nav">
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=home]').click()">🏠 Home</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=about]').click()">👨‍💼 About</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=product]').click()">📦 Products</button>
-        <button onclick="window.parent.document.querySelector('[data-testid=column] button[key*=contact]').click()">💬 Contact</button>
     </div>
+</div>
+""", unsafe_allow_html=True)
+
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+# Layout
+st.markdown('<div class="banner">', unsafe_allow_html=True)
+
+
+b1, b2, b3, b4 = st.columns(4)
+
+with b1:
+    if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+        st.session_state.page = "Home"
+        st.session_state.form_submitted = False
+        st.rerun()
+
+with b2:
+    if st.button("👨‍💼 About",  key="nav_about", use_container_width=True):
+        st.session_state.page = "About"
+        st.session_state.form_submitted = False
+        st.rerun()
+
+with b3:
+    if st.button("📦 View Packages", key="products_main", use_container_width=True):
+        st.session_state.page = "Products"
+        st.session_state.form_submitted = False
+        st.rerun()
+with b4:
+    if st.button("💬 Contact", key="about_main", use_container_width=True):
+        st.session_state.page = "Contact"
+        st.session_state.form_submitted = False
+        st.rerun()
+
+st.markdown('</div>', unsafe_allow_html=True)
+    
+
+
+# ----------------------
+# FLOATING WHATSAPP BUTTON
+# ----------------------
+st.markdown("""
+<style>
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+}
+.whatsapp-float a {
+    text-decoration: none;
+}
+.whatsapp-float img {
+    width: 60px;
+    height: 60px;
+}
+</style>
+<div class="whatsapp-float">
+    <a href="https://wa.me/919359156648" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" />
+    </a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -190,7 +277,9 @@ if st.session_state.page == "Home":
     with col4: st.metric("🏢", "50+", "Cities Covered")
     
     # ANIMATED FEATURE CARDS
-    st.markdown('<h2 style="text-align:center; color:#1e3a8a; font-size:3rem; margin:5rem 0 4rem 0; font-weight:800;">Why Choose SmartNest?</h2>')
+    st.markdown(
+    '<h2 style="text-align:center; color:#1e3a8a; font-size:3rem; margin:5rem 0 4rem 0; font-weight:800;">Why Choose SmartNest?</h2>',
+    unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -201,7 +290,7 @@ if st.session_state.page == "Home":
             <p style="font-size:1.2rem; opacity:0.95; line-height:1.7;">End-to-end encryption<br><strong>Zero data leaks</strong> guaranteed</p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("🔒 Learn More", key="home_sec", use_container_width=True):
+        if st.button("🔒 Learn More", key="home_learn_more", use_container_width=True):
             st.session_state.page = "About"
             st.rerun()
     
@@ -232,7 +321,7 @@ if st.session_state.page == "Home":
 elif st.session_state.page == "About":
     # PERFECTLY ALIGNED HEADER
     st.markdown("""
-    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About SmartNest Automation</h2>
+    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About Niva Novus</h2>
     <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Nagpur's leading smart home automation experts</p>
     """, unsafe_allow_html=True)
     
@@ -407,13 +496,105 @@ elif st.session_state.page == "Products":
 
 elif st.session_state.page == "Contact":
     st.markdown("""
-    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 1.5rem 0; font-weight:800;">Share Your Interest</h2>
-    <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Get your personalized quote within 24 hours • 100% free consultation</p>
-    """, unsafe_allow_html=True)
+<style>
+
+/* GLASS CONTAINER */
+.glass-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    box-shadow: 
+        0 25px 60px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* GLOW EFFECT */
+.glass-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+
+    transform: rotate(25deg);
+    animation: shimmer 6s linear infinite;
+}
+
+/* TITLE */
+.glass-title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+/* SUBTITLE */
+.glass-subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* IFRAME STYLE */
+.glass-iframe {
+    width: 100%;
+    height: 750px;
+    border: none;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.9);
+
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+/* ANIMATION */
+@keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%) rotate(25deg); }
+}
+
+</style>
+
+<div class="glass-container">
+    <div class="glass-title">🚀 Get Your Smart Home Quote</div>
+    <div class="glass-subtitle">
+        Fill the form below • Our experts will contact you within 24 hours
+    </div>
+
+    <iframe 
+        class="glass-iframe"
+        src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true">
+    </iframe>
+</div>
+
+""", unsafe_allow_html=True)
     
     col1, col2 = st.columns([1, 1])
     with col1:
-        if st.button("🏠 Back to Home", key="contact_home", use_container_width=True):
+        if st.button("🏠 Back to Home", key="home_back", use_container_width=True):
             st.session_state.page = "Home"
             st.session_state.form_submitted = False
             st.rerun()
@@ -422,24 +603,21 @@ elif st.session_state.page == "Contact":
             st.session_state.page = "Products"
             st.session_state.form_submitted = False
             st.rerun()
-    
     if not st.session_state.form_submitted:
-        with st.form("interest_form", clear_on_submit=True):
-            col1, col2 = st.columns(2)
-            with col1:
-                name = st.text_input("👤 Full Name *", placeholder="Enter your full name")
-                email = st.text_input("📧 Email *", placeholder="your@email.com")
-                phone = st.text_input("📱 Phone", placeholder="+91 98765 43210")
-            with col2:
-                package = st.selectbox("📦 Package Interest", ["Basic Package", "Standard Package", "Premium Package"])
-                home_type = st.selectbox("🏠 Home Type", ["1-2 BHK", "3 BHK", "4+ BHK", "Villa/Independent"])
-                budget = st.selectbox("💰 Budget Range", ["Economy (₹50K-1L)", "Mid-Range (₹1-3L)", "Premium (₹3L+)"])
-            
-            message = st.text_area("💬 Project Details", 
-                                 placeholder="Home size? Special requirements? Current setup?", height=120)
-            
-            col1, col2 = st.columns([2, 1])
-            submitted = col1.form_submit_button("🚀 Send My Interest", use_container_width=True)
+        with st.markdown("""
+<div style="display:flex; justify-content:center;">
+    <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdSpSEFMgm4sjIL6MaaLpb1Rf_b7TXuk_Pmu0gg4TErVFyirw/viewform?embedded=true" 
+        width="100%" 
+        height="900" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0"
+        style="border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+        Loading…
+    </iframe>
+</div>
+""", unsafe_allow_html=True)
             
             if submitted:
                 st.session_state.form_submitted = True
@@ -470,7 +648,7 @@ elif st.session_state.page == "Contact":
 # SPECTACULAR FOOTER
 st.markdown("""
 <div class="footer">
-    <h3 style="font-size:2.5rem; margin-bottom:1.5rem; font-weight:800;">🏠 SmartNest Automation</h3>
+    <h3 style="font-size:2.5rem; margin-bottom:1.5rem; font-weight:800;">🏠 Niva Novus</h3>
     <p style="font-size:1.3rem; opacity:0.95; margin-bottom:1.5rem;">
         Nagpur, Maharashtra, India | 
         <a href="mailto:info@smartnest.in" style="color:#60a5fa; text-decoration:none; font-weight:600;">📧 info@smartnest.in</a> | 
