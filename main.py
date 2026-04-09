@@ -161,7 +161,7 @@ st.markdown("""
 }
 </style>
 <div class="header-row">
-    <div class="header-title">🏠 SmartNest Automation</div>
+    <div class="header-title">🏠 Niva Novus</div>
     <div class="header-nav">
     </div>
 </div>
@@ -321,7 +321,7 @@ if st.session_state.page == "Home":
 elif st.session_state.page == "About":
     # PERFECTLY ALIGNED HEADER
     st.markdown("""
-    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About SmartNest Automation</h2>
+    <h2 style="color:#1e3a8a; text-align:center; font-size:3.5rem; margin:4rem 0 2rem 0; font-weight:800;">About Niva Novus</h2>
     <p style="text-align:center; font-size:1.5rem; color:#6b7280; margin-bottom:4rem;">Nagpur's leading smart home automation experts</p>
     """, unsafe_allow_html=True)
     
@@ -559,7 +559,7 @@ elif st.session_state.page == "Contact":
 # SPECTACULAR FOOTER
 st.markdown("""
 <div class="footer">
-    <h3 style="font-size:2.5rem; margin-bottom:1.5rem; font-weight:800;">🏠 SmartNest Automation</h3>
+    <h3 style="font-size:2.5rem; margin-bottom:1.5rem; font-weight:800;">🏠 Niva Novus</h3>
     <p style="font-size:1.3rem; opacity:0.95; margin-bottom:1.5rem;">
         Nagpur, Maharashtra, India | 
         <a href="mailto:info@smartnest.in" style="color:#60a5fa; text-decoration:none; font-weight:600;">📧 info@smartnest.in</a> | 
