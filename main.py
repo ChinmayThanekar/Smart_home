@@ -256,7 +256,7 @@ st.markdown("""
 <div class="header-row">
     <div class="header-row">
     <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
-        <img src= {logo_url} style="height:60px;">
+        <img src= "{logo_url}" style="height:60px;">
         <div class="header-title">Niva Novus</div>
     </div>
     <div class="header-nav">
