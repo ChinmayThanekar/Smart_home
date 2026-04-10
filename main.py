@@ -222,7 +222,7 @@ if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
 
 # SPECTACULAR ANIMATED HEADER
-st.markdown("""
+st.markdown(f"""
 <style>
 .header {
     display: flex;
