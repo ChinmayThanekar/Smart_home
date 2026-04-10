@@ -14,7 +14,6 @@ st.markdown("""
 <style>
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-logo_url = @import url("https://github.com/ChinmayThanekar/Smart_home/blob/c3762dab5100a27dfa68cbe7450503a0dc2e51f3/Gemini_Generated_Image_uy80ituy80ituy80.png")
 /* GLOBAL */
 body { 
     background: #f5f1e8;
