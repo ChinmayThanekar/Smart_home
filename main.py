@@ -1,9 +1,11 @@
 import streamlit as st
 
+logo_url = "https://github.com/ChinmayThanekar/Smart_home/blob/e54bef09bd0b415efb9509c4805205fbc048ff14/Gemini_Generated_Image_uy80ituy80ituy80.png"
+
 # Page config
 st.set_page_config(
     page_title="Niva Novus", 
-    page_icon="🏠",
+    page_icon=logo_url,
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -254,7 +256,11 @@ st.markdown("""
 }
 </style>
 <div class="header-row">
-    <div class="header-title">🏠 Niva Novus</div>
+    <div class="header-row">
+    <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
+        <img src="{logo_url}" style="height:60px;">
+        <div class="header-title">Niva Novus</div>
+    </div>
     <div class="header-nav">
     </div>
 </div>
