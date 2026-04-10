@@ -253,15 +253,16 @@ st.markdown("""
     transform: scale(1.1);
 }
 </style>
+f"""
 <div class="header-row">
-    <div class="header-row">
     <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
-        <img src= "https://raw.githubusercontent.com/ChinmayThanekar/Smart_home/blob/75346c97f50eda9479eabaf0ed5227ef719157a1/Gemini_Generated_Image_uy80ituy80ituy80.png" style="height:60px;">
+        <img src="{logo_url}" style="height:60px;">
         <div class="header-title">Niva Novus</div>
     </div>
     <div class="header-nav">
     </div>
 </div>
+"""
 """, unsafe_allow_html=True)
 
 if "page" not in st.session_state:
