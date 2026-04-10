@@ -253,7 +253,7 @@ st.markdown("""
     transform: scale(1.1);
 }
 </style>
-f"""
+f"
 <div class="header-row">
     <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
         <img src="{logo_url}" style="height:60px;">
@@ -262,7 +262,7 @@ f"""
     <div class="header-nav">
     </div>
 </div>
-"""
+"
 """, unsafe_allow_html=True)
 
 if "page" not in st.session_state:
