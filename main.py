@@ -256,7 +256,7 @@ st.markdown("""
 <div class="header-row">
     <div class="header-row">
     <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=520&q=85" style="width:100%; height:100%; object-fit:cover; border-radius:30px;">
+        <img src= logo_url style="width:100%; height:100%; object-fit:cover; border-radius:30px;">
         <div class="header-title">Niva Novus</div>
     </div>
     <div class="header-nav">
