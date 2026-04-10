@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-logo_url = "https://github.com/ChinmayThanekar/Smart_home/blob/e54bef09bd0b415efb9509c4805205fbc048ff14/Gemini_Generated_Image_uy80ituy80ituy80.png"
+logo_url = "Gemini_Generated_Image_uy80ituy80ituy80.png"
 
 # Page config
 st.set_page_config(
